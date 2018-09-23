@@ -1,8 +1,11 @@
-import React from 'react'
-import ReactDom from 'react-dom'
-import './style.css'
+const
+  React = require('react'),
+  ReactDOM = require('react-dom');
 
-ReactDom.render(
-<h1>hello, world!</h1>,
-document.getElementById('root')
+import Router from "./router";
+
+
+ReactDOM.render(
+  <Router/>,
+  document.getElementById('root')
 );
