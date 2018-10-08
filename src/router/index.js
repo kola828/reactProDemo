@@ -11,8 +11,10 @@ class App extends React.Component {
        <Link to="/">Login</Link>
       <Link to="/home">home</Link>
       <hr/> */}
-      <Route exact path='/' component={Login} />
-      {/* <Route  path='/home' component={Home} /> */}
+      <div>
+        <Route exact path='/' component={Login} />
+        <Route  path='/home' component={Home} />
+      </div>
       {/* </div> */}
       </Router>
     )
