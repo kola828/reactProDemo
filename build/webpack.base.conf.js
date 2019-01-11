@@ -8,7 +8,7 @@ const webpack = require('webpack');
 module.exports = {
   entry: {
       src: './src/index.js',
-      vendor:['react','react-router','react-dom'],
+      vendor:['react','react-router','react-dom']
   },
    output: {
     // filename: "js/[name].[chunkhash:16].js",
@@ -30,11 +30,11 @@ module.exports = {
       test: /\.css$/,
       use: [
         MiniCssExtractPlugin.loader,
-        // {loader: "style-loader" }, //在html中插入<style>标签
         {loader: "css-loader" },//获取引用资源，如@import,url()
         {
           loader: "postcss-loader",
           options: {
+            publicPath: '../',
             plugins:[
               require('autoprefixer')({
                   browsers:['last 5 version']
@@ -48,13 +48,13 @@ module.exports = {
       test:/\.styl$/,
       use: [
          MiniCssExtractPlugin.loader,
-         //不晓得为啥MiniCssExtractPlugin 与style-load 只能用其中一个
-        //  {loader: "style-loader"},//在html中插入<style>标签
+         //MiniCssExtractPlugin 与style-load 只能用其中一个
          {loader: "css-loader"},////获取引用资源，如@import,url()
          {loader: "stylus-loader"},
          {
             loader: "postcss-loader",//自动加前缀
             options: {
+              publicPath: '../',
               plugins:[
                     require('autoprefixer')({
                         browsers:['last 5 version']
@@ -64,23 +64,17 @@ module.exports = {
          },
      ]
     },
-    // {
-    //   test: /\.(png|jpg|gif|woff|svg|eot|woff2|tff)$/,
-    //   use: 'url-loader?limit=8129',
-    //   //注意后面那个limit的参数，当你图片大小小于这个限制的时候，会自动启用base64编码图片
-    //   exclude: /node_modules/
-    // },
     {
       test:/\.(png|jpg|gif|jpeg)$/,
       use:[{
-          loader:'url-loader',
-          options: {
-                // outputPath:'../',//输出**文件夹
-                publicPath: '/',
-                name: "images/[name].[ext]",
-                limit:500  //是把小于500B的文件打成Base64的格式，写入JS
-          }
-        }]
+        loader:'url-loader',
+        options: {
+          // outputPath:'../',//输出**文件夹
+          publicPath: '/',
+          name: "images/[name].[ext]",
+          limit:500  //是把小于500B的文件打成Base64的格式，写入JS
+        }
+      }]
     },
     ]
   },
@@ -93,12 +87,12 @@ module.exports = {
       },
       hash: false
     }),
-    new webpack.ProvidePlugin({
+    new webpack.ProvidePlugin({ // 自动加载模块
       React: 'react'
     }),
     new MiniCssExtractPlugin({
-      filename: 'css/[name].[hash].css',
-      chunkFilename: 'css/[id].[hash].css',
+      filename: 'css/style.css',
+      chunkFilename: 'css/[id].css',
     }),
 
   ]

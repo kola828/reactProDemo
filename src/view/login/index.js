@@ -140,5 +140,6 @@ function Snow(x, y, radius) {
     ctx.restore();
   }
 
-module.exports = Login;
+
+export default Login
 

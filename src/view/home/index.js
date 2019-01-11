@@ -1,5 +1,7 @@
-import React from 'react';
+// import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import xue from './xuehua.png'
+import css from '../../style/style.styl'
 
 class Home extends React.Component {
   constructor(props){
@@ -11,9 +13,14 @@ class Home extends React.Component {
       <div>
         <div>index</div>
         <Link to="/login">login</Link>
+        <img src={xue} />
       </div>
     )
   }
+
+  click(){
+    console.log(234);
+  }
 }
 
-module.exports = Home;
+export default Home
