@@ -15,11 +15,6 @@ module.exports = {
     filename: "js/[name].js",
     path: path.resolve(__dirname, '../dist/src/'),
     },
-  // output: {
-  //   // filename: "js/bundle.js",
-  //   filename: "js/[name].[chunkhash:16].js",
-  //   path: DIST_PATH
-  // },
   module: {
     rules: [{
       test: /\.(js|jsx)$/,
@@ -30,16 +25,14 @@ module.exports = {
       test: /\.css$/,
       use: [
         MiniCssExtractPlugin.loader,
-        {loader: "css-loader" },//获取引用资源，如@import,url()
+        {loader: "css-loader",options: { importLoaders: 1 } },//获取引用资源，如@import,url()
         {
           loader: "postcss-loader",
           options: {
-            publicPath: '../',
+            // publicPath: '../',
             plugins:[
-              require('autoprefixer')({
-                  browsers:['last 5 version']
-              })
-            ]
+              require('autoprefixer')({browsers:['last 2 version']})
+            ],
           }
         },
       ]
@@ -47,21 +40,20 @@ module.exports = {
     {
       test:/\.styl$/,
       use: [
-         MiniCssExtractPlugin.loader,
+        MiniCssExtractPlugin.loader,
          //MiniCssExtractPlugin 与style-load 只能用其中一个
-         {loader: "css-loader"},////获取引用资源，如@import,url()
-         {loader: "stylus-loader"},
-         {
-            loader: "postcss-loader",//自动加前缀
-            options: {
-              publicPath: '../',
-              plugins:[
-                    require('autoprefixer')({
-                        browsers:['last 5 version']
-                    })
-              ]
-            }
+        {loader: "css-loader",options: { importLoaders: 1 }},////获取引用资源，如@import,url()
+        // autoprefixer 放在stylus后面会不生效
+        {
+          loader: "postcss-loader",//自动加前缀
+          options: {
+            // publicPath: '../',
+            plugins:[
+              require('autoprefixer')({browsers: ['last 2 version']})
+            ]
+          }
          },
+         {loader: "stylus-loader"},
      ]
     },
     {
