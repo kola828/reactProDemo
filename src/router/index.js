@@ -6,12 +6,14 @@ class App extends React.Component {
   render(){
     return (
       <div>
-        <header>头部</header>
+        <header>blog</header>
         <div className="container">
           <Router>
             <div className="navigation">
-              <Link to="/">Home</Link>
-              <Link to="/login">Login</Link>
+              <Link to="/" className="is_active">简介</Link>
+              <Link to="/login">笔记</Link>
+              <Link to="/login">工具</Link>
+              <Link to="/login">收藏</Link>
             </div>
           </Router>
           <Router>
